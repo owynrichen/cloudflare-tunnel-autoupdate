@@ -13,3 +13,7 @@ Recommended commands:
 If you need to target the currently-active shell virtualenv, use `uv run -- --active ...` (see `uv --help`).
 
 CI and workflows in this repository also use `uv` where appropriate to ensure reproducible, isolated runs.
+
+Test Coverage
+- We aim for at least 90% test coverage measured over the `src/` package. Use pytest-cov via uv to run tests with coverage and fail if coverage is below the threshold:
+  `uv run -- python -m pytest --cov=src --cov-fail-under=90`
