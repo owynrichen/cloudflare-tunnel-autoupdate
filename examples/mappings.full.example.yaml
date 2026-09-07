@@ -1,0 +1,16 @@
+lease_paths:
+  - "/var/lib/dhcp/*.leases"
+  - "/var/lib/dnsmasq/*.leases"
+
+dns:
+  - zone: example.com
+    zone_id: null
+    record_id: "<existing-record-id>"
+    name: host.example.com
+    type: A
+    vm_id: vm1
+
+tunnels:
+  - tunnel_id: "<tunnel-id>"
+    route_id: "<route-id>"
+    vm_id: vm1

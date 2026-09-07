@@ -1,0 +1,7 @@
+{
+  "tasks": {
+    "test": "python -m pytest -q",
+    "run": "python -m src.cli",
+    "lint": "echo 'no lint configured'"
+  }
+}
