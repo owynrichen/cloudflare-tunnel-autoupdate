@@ -22,3 +22,6 @@ jobs:
       - name: Run tests via uv
         run: |
           uv run -- python -m pytest -q
+      - name: Lint (basic)
+        run: |
+          python -m pyflakes src || true
