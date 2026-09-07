@@ -1,0 +1,43 @@
+name: Fetch and Sanitize Cloudflare Fixtures
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  fetch:
+    name: Fetch & sanitize fixtures
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests PyYAML python-dotenv
+
+      - name: Create output dirs
+        run: |
+          mkdir -p tmp/raw tmp/sanitized
+
+      - name: Fetch production fixtures
+        run: |
+          python scripts/fetch_production_fixtures.py --output tmp/raw
+
+      - name: Sanitize fixtures
+        run: |
+          python scripts/sanitize_fixtures.py --input tmp/raw --output tmp/sanitized
+
+      - name: Upload sanitized fixtures
+        uses: actions/upload-artifact@v4
+        with:
+          name: sanitized-fixtures
+          path: tmp/sanitized
