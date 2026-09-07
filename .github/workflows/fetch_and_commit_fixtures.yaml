@@ -37,18 +37,34 @@ jobs:
         run: |
           python scripts/sanitize_fixtures.py --input tmp/raw --output tmp/sanitized
 
-      - name: Commit sanitized fixtures to fixtures branch
+      - name: Commit sanitized fixtures and open PR
         run: |
+          set -euo pipefail
           git config user.name "$GIT_USER_NAME"
           git config user.email "$GIT_USER_EMAIL"
-          git checkout -B fixtures
+          BRANCH="fixtures-update-${{ github.run_id }}"
+          git checkout -B "$BRANCH"
           rsync -a --delete tmp/sanitized/ tests/production_fixtures/
           git add tests/production_fixtures/
           if git diff --cached --quiet; then
             echo "No changes to fixtures"
+            exit 0
+          fi
+          git commit -m "Update sanitized fixtures"
+          git push --set-upstream origin "$BRANCH"
+
+          # Create a pull request
+          REPO="${{ github.repository }}"
+          API_URL="https://api.github.com/repos/$REPO/pulls"
+          PR_TITLE="Update sanitized fixtures ($BRANCH)"
+          PR_BODY="Automated update of sanitized fixtures from workflow run ${{ github.run_id }}. Please review before merging."
+          echo "Creating PR against main from $BRANCH"
+          resp=$(curl -s -o /dev/stderr -w "%{http_code}" -X POST -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" "$API_URL" -d "{\"title\": \"$PR_TITLE\", \"head\": \"$BRANCH\", \"base\": \"main\", \"body\": \"$PR_BODY\"}")
+          if [ "$resp" -ge 200 ] && [ "$resp" -lt 300 ]; then
+            echo "PR created"
           else
-            git commit -m "Update sanitized fixtures"
-            git push origin fixtures
+            echo "Failed to create PR (status $resp)" >&2
+            exit 1
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
