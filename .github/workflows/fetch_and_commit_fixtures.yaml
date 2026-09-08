@@ -7,6 +7,9 @@ jobs:
   fetch-and-commit:
     name: Fetch -> Sanitize -> Commit
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -51,6 +54,8 @@ jobs:
             exit 0
           fi
           git commit -m "Update sanitized fixtures"
+          # ensure we push using the provided GITHUB_TOKEN
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
           git push --set-upstream origin "$BRANCH"
 
           # Create a pull request
