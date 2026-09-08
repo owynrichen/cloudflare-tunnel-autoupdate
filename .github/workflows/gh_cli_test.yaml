@@ -1,0 +1,23 @@
+name: GH CLI Test Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-local-gh-cli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up gh CLI
+        uses: cli/gh-action@v2
+
+      - name: Run trigger_and_watch_workflow script (requires GH auth)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          sudo apt-get update && sudo apt-get install -y python3-pip jq
+          pip3 install --upgrade ghapi
+          chmod +x scripts/trigger_and_watch_workflow.sh
+          ./scripts/trigger_and_watch_workflow.sh fetch_and_commit_fixtures.yaml main
