@@ -1,0 +1,268 @@
+{
+  "result": [
+    {
+      "id": "2cc8a1ef0bfdd4bac06d6922405f9d01",
+      "name": "alchemistinteractive.com",
+      "status": "active",
+      "paused": false,
+      "type": "full",
+      "development_mode": 0,
+      "name_servers": [
+        "ganz.ns.cloudflare.com",
+        "phoenix.ns.cloudflare.com"
+      ],
+      "original_name_servers": [
+        "ns35.domaincontrol.com",
+        "ns36.domaincontrol.com"
+      ],
+      "original_registrar": "godaddy.com, llc (id: 146)",
+      "original_dnshost": null,
+      "modified_on": "2025-03-27T15:22:13.953495Z",
+      "created_on": "2025-03-27T03:37:38.764081Z",
+      "activated_on": "2025-03-27T03:38:50.522591Z",
+      "vanity_name_servers": [],
+      "vanity_name_servers_ips": null,
+      "meta": {
+        "step": 2,
+        "custom_certificate_quota": 0,
+        "page_rule_quota": 3,
+        "phishing_detected": false
+      },
+      "owner": {
+        "id": null,
+        "type": "user",
+        "email": null
+      },
+      "account": {
+        "id": "d6d2dc65016b0d0fe75f5d52d0e82bf7",
+        "name": "Owynrichen@gmail.com's Account"
+      },
+      "tenant": {
+        "id": null,
+        "name": null
+      },
+      "tenant_unit": {
+        "id": null
+      },
+      "permissions": [
+        "#dns_records:edit",
+        "#dns_records:read",
+        "#zone:read",
+        "#zone_settings:read",
+        "#zone:edit",
+        "#zone_settings:edit"
+      ],
+      "plan": {
+        "id": "0feeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "name": "Free Website",
+        "price": 0,
+        "currency": "USD",
+        "frequency": "",
+        "is_subscribed": false,
+        "can_subscribe": false,
+        "legacy_id": "free",
+        "legacy_discount": false,
+        "externally_managed": false
+      }
+    },
+    {
+      "id": "cb27325d37bc2400b30ab7ae4f120126",
+      "name": "owyn.ai",
+      "status": "active",
+      "paused": false,
+      "type": "full",
+      "development_mode": 0,
+      "name_servers": [
+        "ganz.ns.cloudflare.com",
+        "phoenix.ns.cloudflare.com"
+      ],
+      "original_name_servers": null,
+      "original_registrar": null,
+      "original_dnshost": null,
+      "modified_on": "2026-05-04T00:48:34.421624Z",
+      "created_on": "2026-05-04T00:48:28.877842Z",
+      "activated_on": "2026-05-04T00:48:34.272754Z",
+      "vanity_name_servers": [],
+      "vanity_name_servers_ips": null,
+      "meta": {
+        "step": 4,
+        "custom_certificate_quota": 0,
+        "page_rule_quota": 3,
+        "phishing_detected": false
+      },
+      "owner": {
+        "id": null,
+        "type": "user",
+        "email": null
+      },
+      "account": {
+        "id": "d6d2dc65016b0d0fe75f5d52d0e82bf7",
+        "name": "Owynrichen@gmail.com's Account"
+      },
+      "tenant": {
+        "id": null,
+        "name": null
+      },
+      "tenant_unit": {
+        "id": null
+      },
+      "permissions": [
+        "#dns_records:edit",
+        "#dns_records:read",
+        "#zone:read",
+        "#zone_settings:read",
+        "#zone:edit",
+        "#zone_settings:edit"
+      ],
+      "plan": {
+        "id": "0feeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "name": "Free Website",
+        "price": 0,
+        "currency": "USD",
+        "frequency": "",
+        "is_subscribed": false,
+        "can_subscribe": false,
+        "legacy_id": "free",
+        "legacy_discount": false,
+        "externally_managed": false
+      }
+    },
+    {
+      "id": "a6be79c2696354aa80d540f2b30c176e",
+      "name": "owynrichen.com",
+      "status": "active",
+      "paused": false,
+      "type": "full",
+      "development_mode": 0,
+      "name_servers": [
+        "ganz.ns.cloudflare.com",
+        "phoenix.ns.cloudflare.com"
+      ],
+      "original_name_servers": null,
+      "original_registrar": null,
+      "original_dnshost": null,
+      "modified_on": "2025-04-29T16:17:47.782291Z",
+      "created_on": "2024-11-22T21:22:39.748933Z",
+      "activated_on": "2024-11-22T21:22:43.042172Z",
+      "vanity_name_servers": [],
+      "vanity_name_servers_ips": [],
+      "meta": {
+        "step": 4,
+        "custom_certificate_quota": 1,
+        "page_rule_quota": 100,
+        "phishing_detected": false
+      },
+      "owner": {
+        "id": null,
+        "type": "user",
+        "email": null
+      },
+      "account": {
+        "id": "d6d2dc65016b0d0fe75f5d52d0e82bf7",
+        "name": "Owynrichen@gmail.com's Account"
+      },
+      "tenant": {
+        "id": null,
+        "name": null
+      },
+      "tenant_unit": {
+        "id": null
+      },
+      "permissions": [
+        "#dns_records:edit",
+        "#dns_records:read",
+        "#zone:read",
+        "#zone_settings:read",
+        "#zone:edit",
+        "#zone_settings:edit"
+      ],
+      "plan": {
+        "id": "94f3b7b768b0458b56d2cac4fe5ec0f9",
+        "name": "Enterprise Website",
+        "price": 0,
+        "currency": "USD",
+        "frequency": "",
+        "is_subscribed": true,
+        "can_subscribe": true,
+        "legacy_id": "enterprise",
+        "legacy_discount": false,
+        "externally_managed": true
+      }
+    },
+    {
+      "id": "eb7e6247135cf34c5f2bb2a844417801",
+      "name": "richentreefarms.com",
+      "status": "active",
+      "paused": false,
+      "type": "full",
+      "development_mode": 0,
+      "name_servers": [
+        "ganz.ns.cloudflare.com",
+        "phoenix.ns.cloudflare.com"
+      ],
+      "original_name_servers": [
+        "ns15.domaincontrol.com",
+        "ns16.domaincontrol.com"
+      ],
+      "original_registrar": "godaddy.com, llc (id: 146)",
+      "original_dnshost": null,
+      "modified_on": "2025-03-27T03:44:59.184328Z",
+      "created_on": "2025-03-27T03:34:45.563280Z",
+      "activated_on": "2025-03-27T03:40:06.348342Z",
+      "vanity_name_servers": [],
+      "vanity_name_servers_ips": null,
+      "meta": {
+        "step": 2,
+        "custom_certificate_quota": 0,
+        "page_rule_quota": 3,
+        "phishing_detected": false
+      },
+      "owner": {
+        "id": null,
+        "type": "user",
+        "email": null
+      },
+      "account": {
+        "id": "d6d2dc65016b0d0fe75f5d52d0e82bf7",
+        "name": "Owynrichen@gmail.com's Account"
+      },
+      "tenant": {
+        "id": null,
+        "name": null
+      },
+      "tenant_unit": {
+        "id": null
+      },
+      "permissions": [
+        "#dns_records:edit",
+        "#dns_records:read",
+        "#zone:read",
+        "#zone_settings:read",
+        "#zone:edit",
+        "#zone_settings:edit"
+      ],
+      "plan": {
+        "id": "0feeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "name": "Free Website",
+        "price": 0,
+        "currency": "USD",
+        "frequency": "",
+        "is_subscribed": false,
+        "can_subscribe": false,
+        "legacy_id": "free",
+        "legacy_discount": false,
+        "externally_managed": false
+      }
+    }
+  ],
+  "result_info": {
+    "page": 1,
+    "per_page": 20,
+    "total_pages": 1,
+    "count": 4,
+    "total_count": 4
+  },
+  "success": true,
+  "errors": [],
+  "messages": []
+}
