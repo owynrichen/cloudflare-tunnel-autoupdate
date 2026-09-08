@@ -1,0 +1,307 @@
+{
+  "result": [
+    {
+      "id": "607d602aae3f4164160af87eebe4049e",
+      "name": "alchemistinteractive.com",
+      "type": "A",
+      "content": "REDACTED_IP",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.235905Z",
+      "modified_on": "2025-03-27T03:37:41.235905Z"
+    },
+    {
+      "id": "93b4a2cbbb432a7645f66eb515b0294a",
+      "name": "old.alchemistinteractive.com",
+      "type": "A",
+      "content": "REDACTED_IP",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.296804Z",
+      "modified_on": "2025-03-27T03:37:41.296804Z"
+    },
+    {
+      "id": "eeaba8359feddb180f2c446fe81f714c",
+      "name": "calendar.alchemistinteractive.com",
+      "type": "CNAME",
+      "content": "ghs.google.com",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.281109Z",
+      "modified_on": "2025-03-27T03:37:41.281109Z"
+    },
+    {
+      "id": "606afaee5c77611167d878069a6cbb2e",
+      "name": "docs.alchemistinteractive.com",
+      "type": "CNAME",
+      "content": "ghs.google.com",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.29241Z",
+      "modified_on": "2025-03-27T03:37:41.29241Z"
+    },
+    {
+      "id": "b2d5bd5cf3730c1123413d01beb5d05c",
+      "name": "_domainconnect.alchemistinteractive.com",
+      "type": "CNAME",
+      "content": "_domainconnect.gd.domaincontrol.com",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.258945Z",
+      "modified_on": "2025-03-27T03:37:41.258945Z"
+    },
+    {
+      "id": "abfb29acfe3291b572d1e73a3884a159",
+      "name": "ftp.alchemistinteractive.com",
+      "type": "CNAME",
+      "content": "alchemistinteractive.com",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.276825Z",
+      "modified_on": "2025-03-27T03:37:41.276825Z"
+    },
+    {
+      "id": "d2a5aef59a1e6928b97b2495771eca96",
+      "name": "imap.alchemistinteractive.com",
+      "type": "CNAME",
+      "content": "imap.secureserver.net",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.263645Z",
+      "modified_on": "2025-03-27T03:37:41.263645Z"
+    },
+    {
+      "id": "42d7d480b180e6cbf4108f9afe376683",
+      "name": "mail.alchemistinteractive.com",
+      "type": "CNAME",
+      "content": "ghs.google.com",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.267822Z",
+      "modified_on": "2025-03-27T03:37:41.267822Z"
+    },
+    {
+      "id": "bb06f50d10e9d592dc1e3dff82820885",
+      "name": "m.alchemistinteractive.com",
+      "type": "CNAME",
+      "content": "alchemistinteractive.com",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.30042Z",
+      "modified_on": "2025-03-27T03:37:41.30042Z"
+    },
+    {
+      "id": "70240346b0bfca5b406ff84aab4f4c0d",
+      "name": "pay.alchemistinteractive.com",
+      "type": "CNAME",
+      "content": "paylinks.commerce.godaddy.com",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.304401Z",
+      "modified_on": "2025-03-27T03:37:41.304401Z"
+    },
+    {
+      "id": "5f6b6b6f6f01e5c4edc7fba83eccc0ac",
+      "name": "www.alchemistinteractive.com",
+      "type": "CNAME",
+      "content": "alchemistinteractive.com",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.27224Z",
+      "modified_on": "2025-03-27T03:37:41.27224Z"
+    },
+    {
+      "id": "165f768b512e89b4a8e2f2944e202c01",
+      "name": "alchemistinteractive.com",
+      "type": "MX",
+      "content": "aspmx3.googlemail.com",
+      "priority": 50,
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.254315Z",
+      "modified_on": "2025-03-27T03:37:41.254315Z"
+    },
+    {
+      "id": "1cb63476a1e1a7a88f3d85d8771ea486",
+      "name": "alchemistinteractive.com",
+      "type": "MX",
+      "content": "aspmx2.googlemail.com",
+      "priority": 40,
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.250983Z",
+      "modified_on": "2025-03-27T03:37:41.250983Z"
+    },
+    {
+      "id": "073845afcf8c1b911487189d179548c0",
+      "name": "alchemistinteractive.com",
+      "type": "MX",
+      "content": "aspmx.l.google.com",
+      "priority": 10,
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.24718Z",
+      "modified_on": "2025-03-27T03:37:41.24718Z"
+    },
+    {
+      "id": "5d264edb5367cd2601d9f6d778299248",
+      "name": "alchemistinteractive.com",
+      "type": "MX",
+      "content": "alt2.aspmx.l.google.com",
+      "priority": 30,
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.244025Z",
+      "modified_on": "2025-03-27T03:37:41.244025Z"
+    },
+    {
+      "id": "989e529273a99c9f6a9317f1dd6046c4",
+      "name": "alchemistinteractive.com",
+      "type": "MX",
+      "content": "alt1.aspmx.l.google.com",
+      "priority": 20,
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.240733Z",
+      "modified_on": "2025-03-27T03:37:41.240733Z"
+    },
+    {
+      "id": "19e295e3253594b410261255bbb47a9f",
+      "name": "alchemistinteractive.com",
+      "type": "NS",
+      "content": "ns36.domaincontrol.com",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.289531Z",
+      "modified_on": "2025-03-27T03:37:41.289531Z"
+    },
+    {
+      "id": "724500995753856df120628556264fba",
+      "name": "alchemistinteractive.com",
+      "type": "NS",
+      "content": "ns35.domaincontrol.com",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-27T03:37:41.286412Z",
+      "modified_on": "2025-03-27T03:37:41.286412Z"
+    }
+  ],
+  "success": true,
+  "errors": [],
+  "messages": [],
+  "result_info": {
+    "page": 1,
+    "per_page": 100,
+    "count": 18,
+    "total_count": 18,
+    "total_pages": 1
+  }
+}
