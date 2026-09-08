@@ -19,13 +19,18 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install uv pytest pytest-cov python-dotenv requests PyYAML
-      - name: Run tests with coverage via uv
+      - name: Run tests with coverage via uv (debug)
         run: |
-          # Run tests against the repository source (src/) rather than
-          # installing the package into site-packages. This keeps CI behavior
-          # consistent with local runs and ensures coverage is measured from
-          # the checked-in source tree.
-          uv run -- python -m pytest --cov=src --cov-fail-under=90 -q
+          # Debug: print environment and collect list of tests so we can see
+          # which tests are being discovered in CI (helps explain coverage
+          # discrepancy). Then run tests verbosely to emit names for failures.
+          python -V
+          uv run -- python -m pytest --collect-only -q
+          uv run -- python -m pytest -vv --cov=src --cov-fail-under=90 || true
+          # Keep the job failing if coverage is below threshold; run a final
+          # coverage-only command that enforces fail-under so logs show the
+          # exact coverage result.
+          uv run -- python -m pytest --maxfail=1 --disable-warnings -q --cov=src --cov-fail-under=90
       - name: Lint (basic)
         run: |
           python -m pyflakes src || true
