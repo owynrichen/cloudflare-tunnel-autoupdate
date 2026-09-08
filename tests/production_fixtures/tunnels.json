@@ -1,0 +1,181 @@
+{
+  "success": true,
+  "errors": [],
+  "messages": [],
+  "result": [
+    {
+      "id": "6f669949-0e4b-4b09-adf3-7186db5bd6ad",
+      "account_tag": "d6d2dc65016b0d0fe75f5d52d0e82bf7",
+      "created_at": "2025-01-04T03:49:35.737524Z",
+      "deleted_at": null,
+      "name": "OwynD",
+      "connections": [
+        {
+          "colo_name": "sea01",
+          "uuid": "ebaabc04-8cee-49a4-90a8-27e5ab06f581",
+          "id": "ebaabc04-8cee-49a4-90a8-27e5ab06f581",
+          "is_pending_reconnect": false,
+          "origin_ip": "REDACTED_IP",
+          "opened_at": "2026-09-06T17:55:16.460658Z",
+          "client_id": "271942b3-8726-451a-b148-4a8433063fd0",
+          "client_version": "2026.2.0"
+        },
+        {
+          "colo_name": "sea06",
+          "uuid": "f98540f7-23f7-4075-998d-457a8ba4f114",
+          "id": "f98540f7-23f7-4075-998d-457a8ba4f114",
+          "is_pending_reconnect": false,
+          "origin_ip": "REDACTED_IP",
+          "opened_at": "2026-09-06T17:54:03.169976Z",
+          "client_id": "271942b3-8726-451a-b148-4a8433063fd0",
+          "client_version": "2026.2.0"
+        },
+        {
+          "colo_name": "sea01",
+          "uuid": "7f016c89-07e8-4254-ba80-95b8f5f90930",
+          "id": "7f016c89-07e8-4254-ba80-95b8f5f90930",
+          "is_pending_reconnect": false,
+          "origin_ip": "REDACTED_IP",
+          "opened_at": "2026-09-06T17:55:57.565032Z",
+          "client_id": "271942b3-8726-451a-b148-4a8433063fd0",
+          "client_version": "2026.2.0"
+        },
+        {
+          "colo_name": "sea08",
+          "uuid": "3b4ab973-b62d-49e3-9e65-6a1b51143677",
+          "id": "3b4ab973-b62d-49e3-9e65-6a1b51143677",
+          "is_pending_reconnect": false,
+          "origin_ip": "REDACTED_IP",
+          "opened_at": "2026-09-06T17:55:57.585144Z",
+          "client_id": "271942b3-8726-451a-b148-4a8433063fd0",
+          "client_version": "2026.2.0"
+        }
+      ],
+      "conns_active_at": "2026-09-06T17:29:18.730675Z",
+      "conns_inactive_at": null,
+      "tun_type": "cfd_tunnel",
+      "metadata": {},
+      "status": "healthy",
+      "remote_config": true,
+      "config_src": "cloudflare"
+    },
+    {
+      "id": "5ea0561b-50c3-453d-a393-136d4cce3662",
+      "account_tag": "d6d2dc65016b0d0fe75f5d52d0e82bf7",
+      "created_at": "2025-01-27T23:08:06.926906Z",
+      "deleted_at": null,
+      "name": "OwynL",
+      "connections": [
+        {
+          "colo_name": "sea08",
+          "uuid": "fcae9d65-6ac7-43d7-b9eb-3c5c0f2cff23",
+          "id": "fcae9d65-6ac7-43d7-b9eb-3c5c0f2cff23",
+          "is_pending_reconnect": false,
+          "origin_ip": "REDACTED_IP",
+          "opened_at": "2026-09-08T01:46:58.378859Z",
+          "client_id": "3be1abcc-b2c5-455c-b7bb-d3b905a2c3d6",
+          "client_version": "2025.2.0"
+        },
+        {
+          "colo_name": "sea10",
+          "uuid": "b5d7230d-e277-4b72-83d7-a52b2d89359b",
+          "id": "b5d7230d-e277-4b72-83d7-a52b2d89359b",
+          "is_pending_reconnect": false,
+          "origin_ip": "REDACTED_IP",
+          "opened_at": "2026-09-08T01:46:58.353467Z",
+          "client_id": "3be1abcc-b2c5-455c-b7bb-d3b905a2c3d6",
+          "client_version": "2025.2.0"
+        },
+        {
+          "colo_name": "sea07",
+          "uuid": "976be491-f2f2-4ba4-a964-08642dd8949c",
+          "id": "976be491-f2f2-4ba4-a964-08642dd8949c",
+          "is_pending_reconnect": false,
+          "origin_ip": "REDACTED_IP",
+          "opened_at": "2026-09-08T01:46:58.369061Z",
+          "client_id": "3be1abcc-b2c5-455c-b7bb-d3b905a2c3d6",
+          "client_version": "2025.2.0"
+        },
+        {
+          "colo_name": "sea10",
+          "uuid": "a7833f5f-94d4-4e4d-9f2f-80bd573a08e1",
+          "id": "a7833f5f-94d4-4e4d-9f2f-80bd573a08e1",
+          "is_pending_reconnect": false,
+          "origin_ip": "REDACTED_IP",
+          "opened_at": "2026-09-08T01:46:58.331501Z",
+          "client_id": "3be1abcc-b2c5-455c-b7bb-d3b905a2c3d6",
+          "client_version": "2025.2.0"
+        }
+      ],
+      "conns_active_at": "2026-09-08T01:46:58.331501Z",
+      "conns_inactive_at": null,
+      "tun_type": "cfd_tunnel",
+      "metadata": {},
+      "status": "healthy",
+      "remote_config": true,
+      "config_src": "cloudflare"
+    },
+    {
+      "id": "9ebf868b-9211-498e-b71e-750a86fe1dbd",
+      "account_tag": "d6d2dc65016b0d0fe75f5d52d0e82bf7",
+      "created_at": "2025-01-31T20:24:10.071625Z",
+      "deleted_at": null,
+      "name": "PDX Proxmox",
+      "connections": [
+        {
+          "colo_name": "sea01",
+          "uuid": "7e429c33-3d81-4533-b052-d43c8854297d",
+          "id": "7e429c33-3d81-4533-b052-d43c8854297d",
+          "is_pending_reconnect": false,
+          "origin_ip": "REDACTED_IP",
+          "opened_at": "2026-09-06T18:55:48.355791Z",
+          "client_id": "de92f600-4094-49cf-87b4-8312ef6298bb",
+          "client_version": "2026.7.3"
+        },
+        {
+          "colo_name": "sea08",
+          "uuid": "4dcf754a-afa4-4d35-adad-380094aa6b70",
+          "id": "4dcf754a-afa4-4d35-adad-380094aa6b70",
+          "is_pending_reconnect": false,
+          "origin_ip": "REDACTED_IP",
+          "opened_at": "2026-09-06T18:55:48.525207Z",
+          "client_id": "de92f600-4094-49cf-87b4-8312ef6298bb",
+          "client_version": "2026.7.3"
+        },
+        {
+          "colo_name": "sea06",
+          "uuid": "73664902-a680-4ba2-8580-0d203d99e5de",
+          "id": "73664902-a680-4ba2-8580-0d203d99e5de",
+          "is_pending_reconnect": false,
+          "origin_ip": "REDACTED_IP",
+          "opened_at": "2026-09-06T18:55:49.522220Z",
+          "client_id": "de92f600-4094-49cf-87b4-8312ef6298bb",
+          "client_version": "2026.7.3"
+        },
+        {
+          "colo_name": "sea10",
+          "uuid": "f19094f9-f6dc-4124-949c-c10305bb0629",
+          "id": "f19094f9-f6dc-4124-949c-c10305bb0629",
+          "is_pending_reconnect": false,
+          "origin_ip": "REDACTED_IP",
+          "opened_at": "2026-09-06T18:55:50.456816Z",
+          "client_id": "de92f600-4094-49cf-87b4-8312ef6298bb",
+          "client_version": "2026.7.3"
+        }
+      ],
+      "conns_active_at": "2026-09-06T18:55:48.355791Z",
+      "conns_inactive_at": null,
+      "tun_type": "cfd_tunnel",
+      "metadata": {},
+      "status": "healthy",
+      "remote_config": true,
+      "config_src": "cloudflare"
+    }
+  ],
+  "result_info": {
+    "page": 1,
+    "per_page": 1000,
+    "count": 3,
+    "total_count": 3
+  }
+}
