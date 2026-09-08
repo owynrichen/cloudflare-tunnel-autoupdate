@@ -25,6 +25,11 @@ jobs:
           # which tests are being discovered in CI (helps explain coverage
           # discrepancy). Then run tests verbosely to emit names for failures.
           python -V
+          # Debug: list repo files and print sys.path so we can compare CI vs
+          # local environments and see why pytest collects different test sets.
+          ls -la
+          ls -la tests || true
+          uv run -- python -c "import sys, pprint; pprint.pprint(sys.path)"
           uv run -- python -m pytest --collect-only -q
           uv run -- python -m pytest -vv --cov=src --cov-fail-under=90 || true
           # Keep the job failing if coverage is below threshold; run a final
