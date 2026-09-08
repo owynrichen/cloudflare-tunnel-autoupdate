@@ -23,45 +23,9 @@ jobs:
         env:
           PYTHONPATH: ${{ github.workspace }}/src
         run: |
-          # Run pytest explicitly against the tests/ directory to avoid any
-          # discovery differences introduced by the CI environment or
-          # editable installs. Keeping PYTHONPATH ensures imports resolve to
-          # the source tree.
-          # Debug: gather environment and interpreter information to help
-          # diagnose differences between local and CI test collection.
-          echo "== PYTHON INFO =="
-          python -V
-          which python || true
-          which pip || true
-          python -m site
-          echo "== PIP LIST =="
-          pip list --format=columns || true
-          echo "== REPO ROOT AND LISTING =="
-          pwd
-          echo "== LS ROOT =="
-          ls -la || true
-          echo "== LS TESTS =="
-          ls -la tests || true
-
-          echo "== GIT STATUS =="
-          git status --porcelain --untracked-files=all || true
-
-          echo "== SYS.PATH (outside uv) =="
-          python -c "import sys, pprint; pprint.pprint(sys.path)"
-
-          echo "== SYS.PATH (inside uv) =="
-          uv run -- python -c "import sys, pprint; pprint.pprint(sys.path)"
-
-          # Debug: run the mapping and proxmox_api tests explicitly (verbose)
-          # Do NOT ignore failures here so that CI log output contains full
-          # tracebacks if collection or imports fail. This helps diagnose why
-          # these tests appear to be omitted in CI runs.
-          # Use absolute paths when invoking pytest under uv; uv may run
-          # the command in a different process/context where relative paths
-          # are not resolved as expected.
-          uv run -- python -m pytest "$(pwd)/tests/test_mapping.py" -vv
-          uv run -- python -m pytest "$(pwd)/tests/test_proxmox_api.py" -vv
-          uv run -- python -m pytest "$(pwd)/tests" --cov=src --cov-fail-under=90 -q
+          # Run pytest against the tests/ directory via uv. Keep PYTHONPATH so
+          # imports resolve to the source tree and enforce coverage threshold.
+          uv run -- python -m pytest tests --cov=src --cov-fail-under=90 -q
       - name: Lint (basic)
         run: |
           python -m pyflakes src || true

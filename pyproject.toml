@@ -17,6 +17,11 @@ dependencies = [
 ]
 
 [tool.uv]
-# Directory containing project-local git hooks. We use this so contributors can
-# enable the pre-commit hook by running: git config core.hooksPath .githooks
-hooks-dir = ".githooks"
+# NOTE: we intentionally do NOT add non-standard keys under [tool.uv] because
+# uv will parse this file and reject unknown fields. To enable the local
+# pre-commit hooks, run:
+#
+#   git config core.hooksPath .githooks
+#
+# We keep the instructions here but do not add a hooks-dir key to avoid
+# unexpected TOML parse warnings in CI.
