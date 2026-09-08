@@ -27,6 +27,11 @@ jobs:
           # discovery differences introduced by the CI environment or
           # editable installs. Keeping PYTHONPATH ensures imports resolve to
           # the source tree.
+          # Debug: run the mapping and proxmox_api tests explicitly to
+          # surface any import/collection errors that might be causing them
+          # to be omitted from the main test run in CI.
+          uv run -- python -m pytest tests/test_mapping.py -q || true
+          uv run -- python -m pytest tests/test_proxmox_api.py -q || true
           uv run -- python -m pytest tests --cov=src --cov-fail-under=90 -q
       - name: Lint (basic)
         run: |
