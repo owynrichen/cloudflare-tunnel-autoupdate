@@ -15,8 +15,11 @@ def _load_json(path):
 
 def _fixture_path():
     p = pathlib.Path("tests/production_fixtures")
-    if not p.exists():
-        pytest.skip("No production fixtures found (tests/production_fixtures) — skipping e2e fixture test")
+    # Require the directory and primary zones.json file to exist. If the sanitized
+    # fixtures aren't present in the repo (e.g. on a PR), skip the e2e fixture test.
+    zones_file = p / "zones.json"
+    if not p.exists() or not zones_file.exists():
+        pytest.skip("No production fixtures found (tests/production_fixtures/zones.json) — skipping e2e fixture test")
     return p
 
 
