@@ -23,9 +23,11 @@ jobs:
         env:
           PYTHONPATH: ${{ github.workspace }}/src
         run: |
-          # Run tests against the repository source (src/) and ensure src is
-          # first on PYTHONPATH so imports resolve to the source tree.
-          uv run -- python -m pytest --cov=src --cov-fail-under=90 -q
+          # Run pytest explicitly against the tests/ directory to avoid any
+          # discovery differences introduced by the CI environment or
+          # editable installs. Keeping PYTHONPATH ensures imports resolve to
+          # the source tree.
+          uv run -- python -m pytest tests --cov=src --cov-fail-under=90 -q
       - name: Lint (basic)
         run: |
           python -m pyflakes src || true
