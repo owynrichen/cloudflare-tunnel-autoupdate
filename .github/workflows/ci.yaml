@@ -19,23 +19,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install uv pytest pytest-cov python-dotenv requests PyYAML
-      - name: Run tests with coverage via uv (debug)
+      - name: Run tests with coverage via uv
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src
         run: |
-          # Debug: print environment and collect list of tests so we can see
-          # which tests are being discovered in CI (helps explain coverage
-          # discrepancy). Then run tests verbosely to emit names for failures.
-          python -V
-          # Debug: list repo files and print sys.path so we can compare CI vs
-          # local environments and see why pytest collects different test sets.
-          ls -la
-          ls -la tests || true
-          uv run -- python -c "import sys, pprint; pprint.pprint(sys.path)"
-          uv run -- python -m pytest --collect-only -q
-          uv run -- python -m pytest -vv --cov=src --cov-fail-under=90 || true
-          # Keep the job failing if coverage is below threshold; run a final
-          # coverage-only command that enforces fail-under so logs show the
-          # exact coverage result.
-          uv run -- python -m pytest --maxfail=1 --disable-warnings -q --cov=src --cov-fail-under=90
+          # Run tests against the repository source (src/) and ensure src is
+          # first on PYTHONPATH so imports resolve to the source tree.
+          uv run -- python -m pytest --cov=src --cov-fail-under=90 -q
       - name: Lint (basic)
         run: |
           python -m pyflakes src || true
