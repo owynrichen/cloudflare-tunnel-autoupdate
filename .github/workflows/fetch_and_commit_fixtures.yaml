@@ -2,6 +2,11 @@ name: Fetch, Sanitize, and Commit Fixtures
 
 on:
   workflow_dispatch: {}
+  # Temporarily allow runs on push to main so we can immediately execute the updated workflow
+  # (this is minimal and can be removed after verification)
+  push:
+    branches:
+      - main
 
 jobs:
   fetch-and-commit:
