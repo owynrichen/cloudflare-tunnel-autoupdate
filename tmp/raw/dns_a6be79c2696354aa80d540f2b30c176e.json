@@ -1,0 +1,644 @@
+{
+  "result": [
+    {
+      "id": "d01611c6314c06bfaf513e87448f3372",
+      "name": "k3s-agent1.pdx.internal.owynrichen.com",
+      "type": "A",
+      "content": "192.168.0.33",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-02-09T05:37:20.434978Z",
+      "modified_on": "2025-09-25T02:50:54.397987Z"
+    },
+    {
+      "id": "387cd875fcd1c89b01ecec7a1a09981a",
+      "name": "k3s-ingress.pdx.internal.owynrichen.com",
+      "type": "A",
+      "content": "192.168.0.31",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-02-18T03:41:13.903002Z",
+      "modified_on": "2025-09-25T02:51:15.275823Z"
+    },
+    {
+      "id": "b49e7bb25aa6f06c2e31babcc604b91e",
+      "name": "k3s-ingress.pdx.internal.owynrichen.com",
+      "type": "A",
+      "content": "192.168.0.33",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-02-18T03:41:28.684344Z",
+      "modified_on": "2025-09-25T02:51:02.535709Z"
+    },
+    {
+      "id": "ffb292b4895da2e6e15dcc559288434b",
+      "name": "k3s.pdx.internal.owynrichen.com",
+      "type": "A",
+      "content": "192.168.0.31",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-02-09T05:36:43.061551Z",
+      "modified_on": "2025-09-25T02:51:28.360187Z"
+    },
+    {
+      "id": "3a60c9f841f18cb11df3e84eb4082c54",
+      "name": "ollama.pdx.internal.owynrichen.com",
+      "type": "A",
+      "content": "192.168.86.200",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-02-03T17:39:33.615734Z",
+      "modified_on": "2025-04-28T22:05:14.638542Z"
+    },
+    {
+      "id": "2a45fc7934d2b5ccd0bf72a9721f4e47",
+      "name": "pdx.internal.owynrichen.com",
+      "type": "A",
+      "content": "192.168.0.101",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-02-03T00:14:05.047222Z",
+      "modified_on": "2025-09-26T02:46:29.177716Z"
+    },
+    {
+      "id": "b247e486a6c99886c3c4d8e0e9d7e1f5",
+      "name": "sea.owynrichen.com",
+      "type": "A",
+      "content": "174.21.145.200",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-10-19T19:31:11.715929Z",
+      "modified_on": "2025-10-19T19:31:11.715929Z"
+    },
+    {
+      "id": "c8ed3e0e7770271e12bc9274e30e9c94",
+      "name": "searxng.pdx.internal.owynrichen.com",
+      "type": "A",
+      "content": "192.168.0.32",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-02-06T17:30:17.887764Z",
+      "modified_on": "2025-09-25T02:52:20.788731Z"
+    },
+    {
+      "id": "f3944d780573ee4bc088098ed9858921",
+      "name": "alert-manager.pdx.internal.owynrichen.com",
+      "type": "CNAME",
+      "content": "k3s-ingress.pdx.internal.owynrichen.com",
+      "proxiable": true,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-09T02:28:04.507602Z",
+      "modified_on": "2025-03-09T02:28:04.507602Z"
+    },
+    {
+      "id": "cbdf11123e625e14ee9ce353cf1c67d9",
+      "name": "apid.owynrichen.com",
+      "type": "CNAME",
+      "content": "6f669949-0e4b-4b09-adf3-7186db5bd6ad.cfargotunnel.com",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-01-04T03:53:28.558394Z",
+      "modified_on": "2025-01-04T03:53:28.558394Z"
+    },
+    {
+      "id": "26a25c91fc76ba53635fb841f0d6dd4b",
+      "name": "argocd.pdx.internal.owynrichen.com",
+      "type": "CNAME",
+      "content": "k3s-ingress.pdx.internal.owynrichen.com",
+      "proxiable": true,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-09T02:51:15.165592Z",
+      "modified_on": "2025-03-09T02:51:15.165592Z"
+    },
+    {
+      "id": "702459cb2b80bbac3a682c22eb8399ce",
+      "name": "argoworkflows.pdx.internal.owynrichen.com",
+      "type": "CNAME",
+      "content": "k3s-ingress.pdx.internal.owynrichen.com",
+      "proxiable": true,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-14T03:43:56.108317Z",
+      "modified_on": "2025-03-14T03:43:56.108317Z"
+    },
+    {
+      "id": "fd92b2f98e50767165feb28a36dae784",
+      "name": "dev.owynrichen.com",
+      "type": "CNAME",
+      "content": "9ebf868b-9211-498e-b71e-750a86fe1dbd.cfargotunnel.com",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2026-05-05T14:20:03.571447Z",
+      "modified_on": "2026-05-05T14:20:03.571447Z"
+    },
+    {
+      "id": "f78e435c179ef1f7ff218997f7545854",
+      "name": "grafana.pdx.internal.owynrichen.com",
+      "type": "CNAME",
+      "content": "k3s-ingress.pdx.internal.owynrichen.com",
+      "proxiable": true,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-09T02:29:18.469843Z",
+      "modified_on": "2025-03-09T02:29:29.772697Z"
+    },
+    {
+      "id": "d8c73ee62648a605a514c95852b4444c",
+      "name": "langfuse.pdx.internal.owynrichen.com",
+      "type": "CNAME",
+      "content": "k3s-ingress.pdx.internal.owynrichen.com",
+      "proxiable": true,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-02-11T01:59:06.643477Z",
+      "modified_on": "2025-02-18T03:43:00.363262Z"
+    },
+    {
+      "id": "2f2df9bc8947982b38edfb5fb3d70fac",
+      "name": "longhorn.pdx.internal.owynrichen.com",
+      "type": "CNAME",
+      "content": "k3s-ingress.pdx.internal.owynrichen.com",
+      "proxiable": true,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-08T22:12:11.368283Z",
+      "modified_on": "2025-03-08T22:12:11.368283Z"
+    },
+    {
+      "id": "8028aff417ac677dda4ab10931fa9d5e",
+      "name": "opencode.owynrichen.com",
+      "type": "CNAME",
+      "content": "9ebf868b-9211-498e-b71e-750a86fe1dbd.cfargotunnel.com",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2026-08-29T15:23:15.79088Z",
+      "modified_on": "2026-08-29T15:23:15.79088Z"
+    },
+    {
+      "id": "f28973b1dade01e5404685fa5e968cbf",
+      "name": "openlit.pdx.internal.owynrichen.com",
+      "type": "CNAME",
+      "content": "k3s-ingress.pdx.internal.owynrichen.com",
+      "proxiable": true,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-02-14T19:08:35.880448Z",
+      "modified_on": "2025-02-18T03:42:48.842906Z"
+    },
+    {
+      "id": "858078f0cd57e373b6d8fd6a794008a3",
+      "name": "owynrichen.com",
+      "type": "CNAME",
+      "content": "owynrichen-com.pages.dev",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2024-12-12T00:35:08.362263Z",
+      "modified_on": "2024-12-12T00:35:08.362263Z"
+    },
+    {
+      "id": "3b3be5b68403652cd1eb129e36d6cc62",
+      "name": "owyn-voice-api.pdx.internal.owynrichen.com",
+      "type": "CNAME",
+      "content": "k3s-ingress.pdx.internal.owynrichen.com",
+      "proxiable": true,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-15T17:37:23.005936Z",
+      "modified_on": "2025-03-15T17:37:23.005936Z"
+    },
+    {
+      "id": "5f7b121e757c442abfd1f2b2fe7ed594",
+      "name": "pdx.owynrichen.com",
+      "type": "CNAME",
+      "content": "9ebf868b-9211-498e-b71e-750a86fe1dbd.cfargotunnel.com",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-01-31T20:27:05.477061Z",
+      "modified_on": "2025-01-31T20:27:05.477061Z"
+    },
+    {
+      "id": "fedd79253491b31d351bf3f63ee8f6d1",
+      "name": "pragent.pdx.internal.owynrichen.com",
+      "type": "CNAME",
+      "content": "k3s-ingress.pdx.internal.owynrichen.com",
+      "proxiable": true,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-02-18T03:44:32.972785Z",
+      "modified_on": "2025-02-18T03:44:32.972785Z"
+    },
+    {
+      "id": "7606cf189abb093f183d1e66ee120d74",
+      "name": "prometheus.pdx.internal.owynrichen.com",
+      "type": "CNAME",
+      "content": "k3s-ingress.pdx.internal.owynrichen.com",
+      "proxiable": true,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-09T02:28:37.05449Z",
+      "modified_on": "2025-03-09T02:28:37.05449Z"
+    },
+    {
+      "id": "efb3566ae06b074ee02a83779d71897f",
+      "name": "registry.pdx.internal.owynrichen.com",
+      "type": "CNAME",
+      "content": "k3s-ingress.pdx.internal.owynrichen.com",
+      "proxiable": true,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-08T00:14:04.439588Z",
+      "modified_on": "2025-03-08T22:09:32.970497Z"
+    },
+    {
+      "id": "47822542ddf2cc8f2ba323242c407342",
+      "name": "registry-ui.pdx.internal.owynrichen.com",
+      "type": "CNAME",
+      "content": "k3s-ingress.pdx.internal.owynrichen.com",
+      "proxiable": true,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-08T03:31:41.458509Z",
+      "modified_on": "2025-03-08T22:09:57.933202Z"
+    },
+    {
+      "id": "c7c55bcc52c079b26e1455bc0039d096",
+      "name": "traefik.pdx.internal.owynrichen.com",
+      "type": "CNAME",
+      "content": "k3s-ingress.pdx.internal.owynrichen.com",
+      "proxiable": true,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-08T00:02:59.299016Z",
+      "modified_on": "2025-03-08T00:02:59.299016Z"
+    },
+    {
+      "id": "9b9ecce2a1bbf85200258191ae4edde9",
+      "name": "vnc.owynrichen.com",
+      "type": "CNAME",
+      "content": "6f669949-0e4b-4b09-adf3-7186db5bd6ad.cfargotunnel.com",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-01-18T17:09:49.182031Z",
+      "modified_on": "2025-01-18T17:09:49.182031Z"
+    },
+    {
+      "id": "848ca2e8b9032e4fd93c6fcc9ffbdd45",
+      "name": "voice-api.owynrichen.com",
+      "type": "CNAME",
+      "content": "9ebf868b-9211-498e-b71e-750a86fe1dbd.cfargotunnel.com",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-15T17:35:51.315434Z",
+      "modified_on": "2025-03-15T17:35:51.315434Z"
+    },
+    {
+      "id": "e688b0a6e8ebd1406c59a84fa0695682",
+      "name": "whoami.pdx.internal.owynrichen.com",
+      "type": "CNAME",
+      "content": "k3s-ingress.pdx.internal.owynrichen.com",
+      "proxiable": true,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {
+        "flatten_cname": false
+      },
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-07T04:38:15.68648Z",
+      "modified_on": "2025-03-08T22:08:56.983704Z"
+    },
+    {
+      "id": "25ad3fb886a41f2ae343fa39c2d9c1cd",
+      "name": "_acme-challenge.alert-manager.pdx.internal.owynrichen.com",
+      "type": "TXT",
+      "content": "IAi6qUAyaEausBfLMEFVw-VzOa-QnsbDHteBYVNi8kA",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 120,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-05-08T01:33:48.141234Z",
+      "modified_on": "2025-05-08T01:33:48.141234Z"
+    },
+    {
+      "id": "6dae072d52a2c8faa8a332ff05d8a102",
+      "name": "_acme-challenge.grafana.pdx.internal.owynrichen.com",
+      "type": "TXT",
+      "content": "nHqXa7tzfU_tp2sBsStiEe1CCBH7aZcM5zjD1ugeZck",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 120,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-05-08T01:34:08.676308Z",
+      "modified_on": "2025-05-08T01:34:08.676308Z"
+    },
+    {
+      "id": "56a179abf9d74dcaf4428ab706a44ca0",
+      "name": "_acme-challenge.longhorn.pdx.internal.owynrichen.com",
+      "type": "TXT",
+      "content": "KW5ZmhgU_Yg7IW5Rhn0dyR7GkTgJl0VZ9YtDrnQuNMQ",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 120,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-05-07T22:22:16.847346Z",
+      "modified_on": "2025-05-07T22:22:16.847346Z"
+    },
+    {
+      "id": "251c924db8b5ce09d18510923995bcf5",
+      "name": "_acme-challenge.owyn-voice-api.pdx.internal.owynrichen.com",
+      "type": "TXT",
+      "content": "pvTDLFFUCRperbP5UVO2_yyzu8Vr_M81-hbNMDMp5Rk",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 120,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-03-15T17:06:22.086306Z",
+      "modified_on": "2025-03-15T17:06:22.086306Z"
+    },
+    {
+      "id": "0bdde69620254c4e7a4aef95961bbf4a",
+      "name": "_acme-challenge.prometheus.pdx.internal.owynrichen.com",
+      "type": "TXT",
+      "content": "nEWvMGuUru7l75yQpy99xMzyhr62PY4pD-rOc-f9Q5A",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 120,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-05-08T01:34:04.58739Z",
+      "modified_on": "2025-05-08T01:34:04.58739Z"
+    },
+    {
+      "id": "b43c18f6eea2280862ae261070a89b0f",
+      "name": "_acme-challenge.registry.pdx.internal.owynrichen.com",
+      "type": "TXT",
+      "content": "rI33YEgSEoqfpc62rFrxro9j6ychi6JONr749emkJXc",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 120,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-05-07T21:50:46.267575Z",
+      "modified_on": "2025-05-07T21:50:46.267575Z"
+    },
+    {
+      "id": "009b55b9a74b736f442deef3567f99d9",
+      "name": "_acme-challenge.registry-ui.pdx.internal.owynrichen.com",
+      "type": "TXT",
+      "content": "g75dcCuyyoLxXA-ITpooxjX3FkmuMzJhf-hFLpNSo9E",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 120,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-05-07T21:51:02.188639Z",
+      "modified_on": "2025-05-07T21:51:02.188639Z"
+    },
+    {
+      "id": "2e5bfc36ac2b748403e53472399d8d9a",
+      "name": "_acme-challenge.whoami.pdx.internal.owynrichen.com",
+      "type": "TXT",
+      "content": "tcifbWGIrG0uJPiN9NpMo4wKSHZ7ICsnXD9obvrfKiM",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 120,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-05-07T18:56:01.969426Z",
+      "modified_on": "2025-05-07T18:56:01.969426Z"
+    },
+    {
+      "id": "8b9579ff2396bfe554ac3b3852cfa37a",
+      "name": "_dmarc.owynrichen.com",
+      "type": "TXT",
+      "content": "\"v=DMARC1; p=none; rua=mailto:a85bae226ea04ca093534efe962ca940@dmarc-reports.cloudflare.net\"",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "settings": {},
+      "meta": {},
+      "comment": null,
+      "tags": [],
+      "created_on": "2025-02-02T23:59:16.318102Z",
+      "modified_on": "2025-02-02T23:59:16.318102Z"
+    },
+    {
+      "id": "3eb268382ff02d66fa0dd2f90889619d",
+      "name": "api.owynrichen.com",
+      "type": "AAAA",
+      "content": "100::",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "settings": {},
+      "meta": {
+        "origin_worker_id": "d72f7bfc96a1ef7080793f2a5e2458bc0cef6c0d",
+        "read_only": true
+      },
+      "comment": null,
+      "tags": [],
+      "created_on": "2024-12-12T19:39:17.827248Z",
+      "modified_on": "2024-12-12T19:39:17.827248Z"
+    }
+  ],
+  "success": true,
+  "errors": [],
+  "messages": [],
+  "result_info": {
+    "page": 1,
+    "per_page": 100,
+    "count": 39,
+    "total_count": 39,
+    "total_pages": 1
+  }
+}
