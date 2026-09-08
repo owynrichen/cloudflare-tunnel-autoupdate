@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Pre-commit hook that validates staged YAML files using PyYAML (via uv)
+set -euo pipefail
+
+# Find staged YAML files
+staged=$(git diff --name-only --cached -- '*.yml' '*.yaml' || true)
+if [ -z "$staged" ]; then
+  exit 0
+fi
+
+echo "[pre-commit] Validating staged YAML files..."
+
+fail=0
+for f in $staged; do
+  if [ ! -f "$f" ]; then
+    # Might be a deleted file; skip
+    continue
+  fi
+  echo "[pre-commit] Checking $f"
+  # Use uv-managed env to run PyYAML check; fall back to system python if uv is missing
+  if command -v uv >/dev/null 2>&1; then
+    uv run -- python -c "import sys,yaml; yaml.safe_load(open(sys.argv[1])); print(sys.argv[1]+': OK')" "$f" || fail=1
+  else
+    python -c "import sys,yaml; yaml.safe_load(open(sys.argv[1])); print(sys.argv[1]+': OK')" "$f" || fail=1
+  fi
+done
+
+if [ "$fail" -ne 0 ]; then
+  echo "[pre-commit] YAML validation failed. Aborting commit."
+  exit 1
+fi
+
+echo "[pre-commit] YAML validation passed."
+exit 0
