@@ -36,6 +36,16 @@ jobs:
           python -m site
           echo "== PIP LIST =="
           pip list --format=columns || true
+          echo "== REPO ROOT AND LISTING =="
+          pwd
+          echo "== LS ROOT =="
+          ls -la || true
+          echo "== LS TESTS =="
+          ls -la tests || true
+
+          echo "== GIT STATUS =="
+          git status --porcelain --untracked-files=all || true
+
           echo "== SYS.PATH (outside uv) =="
           python -c "import sys, pprint; pprint.pprint(sys.path)"
 
