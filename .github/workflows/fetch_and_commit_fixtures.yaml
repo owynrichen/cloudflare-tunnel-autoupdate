@@ -58,18 +58,25 @@ jobs:
           git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
           git push --set-upstream origin "$BRANCH"
 
-          # Create a pull request
-          REPO="${{ github.repository }}"
-          API_URL="https://api.github.com/repos/$REPO/pulls"
-          PR_TITLE="Update sanitized fixtures ($BRANCH)"
-          PR_BODY="Automated update of sanitized fixtures from workflow run ${{ github.run_id }}. Please review before merging."
+          # Create a pull request using the create-pull-request action.
           echo "Creating PR against main from $BRANCH"
-          resp=$(curl -s -o /dev/stderr -w "%{http_code}" -X POST -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" "$API_URL" -d "{\"title\": \"$PR_TITLE\", \"head\": \"$BRANCH\", \"base\": \"main\", \"body\": \"$PR_BODY\"}")
-          if [ "$resp" -ge 200 ] && [ "$resp" -lt 300 ]; then
-            echo "PR created"
-          else
-            echo "Failed to create PR (status $resp)" >&2
-            exit 1
-          fi
+      - name: Create PR with PAT
+        if: ${{ secrets.PERSONAL_ACCESS_TOKEN != '' }}
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          branch: fixtures-update-${{ github.run_id }}
+          base: main
+          title: "Update sanitized fixtures (fixtures-update-${{ github.run_id }})"
+          body: "Automated update of sanitized fixtures from workflow run ${{ github.run_id }}. Please review before merging."
+      - name: Create PR with GITHUB_TOKEN
+        if: ${{ secrets.PERSONAL_ACCESS_TOKEN == '' }}
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: fixtures-update-${{ github.run_id }}
+          base: main
+          title: "Update sanitized fixtures (fixtures-update-${{ github.run_id }})"
+          body: "Automated update of sanitized fixtures from workflow run ${{ github.run_id }}. Please review before merging."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
