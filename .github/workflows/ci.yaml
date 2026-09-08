@@ -56,9 +56,12 @@ jobs:
           # Do NOT ignore failures here so that CI log output contains full
           # tracebacks if collection or imports fail. This helps diagnose why
           # these tests appear to be omitted in CI runs.
-          uv run -- python -m pytest tests/test_mapping.py -vv
-          uv run -- python -m pytest tests/test_proxmox_api.py -vv
-          uv run -- python -m pytest tests --cov=src --cov-fail-under=90 -q
+          # Use absolute paths when invoking pytest under uv; uv may run
+          # the command in a different process/context where relative paths
+          # are not resolved as expected.
+          uv run -- python -m pytest "$(pwd)/tests/test_mapping.py" -vv
+          uv run -- python -m pytest "$(pwd)/tests/test_proxmox_api.py" -vv
+          uv run -- python -m pytest "$(pwd)/tests" --cov=src --cov-fail-under=90 -q
       - name: Lint (basic)
         run: |
           python -m pyflakes src || true
