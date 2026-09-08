@@ -8,6 +8,9 @@ It expects CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID in the environment.
 import os
 import requests
 import sys
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def warn(msg):
@@ -40,6 +43,18 @@ def main():
             print(f"{name}: HTTP {r.status_code}")
             if r.status_code == 200:
                 info(f"{name} OK")
+                # if this is the zones call, print a summary of returned zones
+                if name == "List zones":
+                    try:
+                        data = r.json().get("result", [])
+                        count = len(data)
+                        info(f"Found {count} zones (showing up to 10):")
+                        for z in data[:10]:
+                            zid = z.get("id")
+                            zname = z.get("name")
+                            print(f"  - {zname} (id: {zid})")
+                    except Exception:
+                        warn("Could not parse zones response JSON")
             elif r.status_code == 403:
                 warn(f"{name} returned 403 Forbidden - token likely missing needed scope")
                 ok = False

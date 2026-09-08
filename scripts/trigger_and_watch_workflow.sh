@@ -15,14 +15,15 @@ echo "Waiting briefly for run to register..."
 sleep 5
 
 echo "Finding latest run id for workflow $WORKFLOW"
-RUN_JSON=$(gh run list --workflow "$WORKFLOW" --limit 1 --json id,status,conclusion,event,headBranch)
+RUN_JSON=$(gh run list --workflow "$WORKFLOW" --limit 1 --json databaseId,status,conclusion,event,headBranch)
 RUN_ID=$(python - <<PY
 import sys, json
 data = json.load(sys.stdin)
 if len(data) == 0:
     print("")
 else:
-    print(data[0].get('id',''))
+    # github uses databaseId as the run id for gh run watch/view
+    print(data[0].get('databaseId',''))
 PY
 <<<"$RUN_JSON")
 

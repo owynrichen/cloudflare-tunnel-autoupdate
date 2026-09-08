@@ -4,9 +4,12 @@ This script should be run locally by a human with a token in their env.
 It will save JSON responses into the target directory. It will NOT commit them.
 """
 import os
+from dotenv import load_dotenv
 import requests
 import json
 import argparse
+
+load_dotenv()
 
 
 def save(path, data):

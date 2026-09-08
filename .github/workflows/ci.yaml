@@ -21,11 +21,11 @@ jobs:
           pip install uv pytest pytest-cov python-dotenv requests PyYAML
       - name: Run tests with coverage via uv
         run: |
-          # Install package in editable mode so imports are consistent in CI.
-          uv run -- pip install -e .
-          # Measure coverage by package name (proxcloud). Using --cov=src misses
-          # coverage when the package is installed into site-packages.
-          uv run -- python -m pytest --cov=proxcloud --cov-fail-under=90 -q
+          # Run tests against the repository source (src/) rather than
+          # installing the package into site-packages. This keeps CI behavior
+          # consistent with local runs and ensures coverage is measured from
+          # the checked-in source tree.
+          uv run -- python -m pytest --cov=src --cov-fail-under=90 -q
       - name: Lint (basic)
         run: |
           python -m pyflakes src || true

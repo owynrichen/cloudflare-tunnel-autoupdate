@@ -13,6 +13,7 @@ def main(argv=None):
     cf = CloudflareClient(cfg.cloudflare_token, cfg.cloudflare_account)
     state = State(cfg.state_db)
     runner = Runner(cf, state)
+    logging.getLogger().debug("Loaded config: %s", cfg)
     if not argv:
         argv = sys.argv[1:]
     if len(argv) < 1:

@@ -50,7 +50,13 @@ def sanitize(obj: Any) -> Any:
 
 def process_file(inpath: str, outpath: str):
     with open(inpath, "r") as f:
-        data = json.load(f)
+        try:
+            data = json.load(f)
+        except Exception:
+            # if file not json, copy raw
+            with open(outpath, "wb") as out:
+                out.write(open(inpath, "rb").read())
+            return
     s = sanitize(data)
     with open(outpath, "w") as f:
         json.dump(s, f, indent=2)
