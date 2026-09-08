@@ -19,3 +19,14 @@ CI and workflows in this repository also use `uv` where appropriate to ensure re
 Test Coverage
 - We aim for at least 90% test coverage measured over the `src/` package. Use pytest-cov via uv to run tests with coverage and fail if coverage is below the threshold:
   `uv run -- python -m pytest --cov=src --cov-fail-under=90`
+
+YAML Validation
+- Validate any YAML files you change before committing or pushing. CI and workflows are sensitive to YAML indentation and syntax; a small mistake can break runs.
+- Quick syntax check (uses PyYAML which is already listed as a dependency in CI):
+  `uv run -- python -c "import sys, yaml; yaml.safe_load(open(sys.argv[1])); print(sys.argv[1]+': OK')" path/to/file.yaml`
+- Lint with yamllint (recommended for style and stricter checks):
+  1. Install locally into the uv-managed env: `uv run -- pip install yamllint`
+ 2. Run: `uv run -- yamllint path/to/file.yaml`
+- Validate only staged YAML files before committing (example):
+  `git diff --name-only --staged -- '*.yaml' | xargs -r -n1 uv run -- python -c "import sys,yaml; yaml.safe_load(open(sys.argv[1])); print(sys.argv[1]+': OK')"`
+- Consider adding a pre-commit hook that runs `yamllint` (or the Python syntax check) so YAML mistakes are caught locally before commits are made.
