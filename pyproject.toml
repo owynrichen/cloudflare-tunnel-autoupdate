@@ -15,3 +15,8 @@ dependencies = [
   "pytest>=9.1.1",
   "pytest-cov>=4.0",
 ]
+
+[tool.uv]
+# Directory containing project-local git hooks. We use this so contributors can
+# enable the pre-commit hook by running: git config core.hooksPath .githooks
+hooks-dir = ".githooks"
