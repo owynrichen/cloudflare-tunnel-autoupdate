@@ -90,16 +90,8 @@ jobs:
 
           resp=$(curl -sS -X POST -H "Authorization: token $TOKEN" -H "Accept: application/vnd.github.v3+json" -d "$DATA" "$API_URL" || true)
 
-          # Attempt to extract html_url from response
-          pr_url=$(echo "$resp" | python - <<'PY'
-import sys, json
-try:
-    payload = json.load(sys.stdin)
-    print(payload.get('html_url') or '')
-except Exception:
-    print('')
-PY
-)
+          # Attempt to extract html_url from response using jq (safer in YAML)
+          pr_url=$(echo "$resp" | jq -r '.html_url // empty' || true)
 
           if [ -z "$pr_url" ]; then
             echo "Failed to create PR. Full response:" >&2

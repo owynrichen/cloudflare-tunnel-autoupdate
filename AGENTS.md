@@ -5,6 +5,8 @@ All development and test commands in this repository MUST be run using `uv` so t
 
 Do not run `python`, `pip`, `pytest`, or attempt to activate a separate virtualenv directly from the command line. Running commands outside `uv` can cause inconsistent dependency resolution and may accidentally use a system Python without SSL support.
 
+This requirement applies to every ad-hoc or temporary Python invocation as well — for example, one-off scripts, quick repls, or temporary helper commands that you or an agent runs during development or CI debugging. Always prefix Python commands with `uv run --` (for example: `uv run -- python scripts/some_temp_script.py`) so the project's controlled environment is used.
+
 Recommended commands:
 - Run tests: `uv run -- python -m pytest` or `uv run -- pytest`
 - Run the CLI: `uv run -- python -m src.cli mappings.yaml`
