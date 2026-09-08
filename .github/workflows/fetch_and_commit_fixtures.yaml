@@ -65,8 +65,8 @@ jobs:
       - name: Create PR
         uses: peter-evans/create-pull-request@v5
         with:
-          # prefer a user PAT if present, otherwise fall back to GITHUB_TOKEN
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN || secrets.GITHUB_TOKEN }}
+          # use the workflow GITHUB_TOKEN path
+          token: ${{ secrets.GITHUB_TOKEN }}
           branch: fixtures-update-${{ github.run_id }}
           base: main
           title: "Update sanitized fixtures (fixtures-update-${{ github.run_id }})"
