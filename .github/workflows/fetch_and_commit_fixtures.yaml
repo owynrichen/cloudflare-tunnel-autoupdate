@@ -41,6 +41,8 @@ jobs:
           python scripts/sanitize_fixtures.py --input tmp/raw --output tmp/sanitized
 
       - name: Commit sanitized fixtures and open PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
           git config user.name "$GIT_USER_NAME"
