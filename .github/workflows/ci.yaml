@@ -21,6 +21,8 @@ jobs:
           pip install uv pytest pytest-cov python-dotenv requests PyYAML
       - name: Run tests with coverage via uv
         run: |
+          # Ensure the package is installed in editable mode so imports map to the src/ tree
+          uv run -- pip install -e .
           uv run -- python -m pytest --cov=src --cov-fail-under=90 -q
       - name: Lint (basic)
         run: |
