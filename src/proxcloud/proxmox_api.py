@@ -24,13 +24,20 @@ class ProxmoxAPI:
         self.base = b
         self.token = token
         self.headers = {"Authorization": f"PVEAPIToken={self.token}"}
+        # honor verify setting from project config if present
+        try:
+            cfg = load_config()
+            self.verify = cfg.proxmox_api_verify
+        except Exception:
+            # if config not loadable during tests, default to True
+            self.verify = True
 
     def _get(self, url: str) -> Optional[requests.Response]:
         """Perform a GET with basic retry/backoff and return Response or None on failure."""
         last_exc = None
         for attempt in range(1, _RETRIES + 1):
             try:
-                r = requests.get(url, headers=self.headers, timeout=5)
+                r = requests.get(url, headers=self.headers, timeout=5, verify=self.verify)
                 r.raise_for_status()
                 return r
             except Exception as e:

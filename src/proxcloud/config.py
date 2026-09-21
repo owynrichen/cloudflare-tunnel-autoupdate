@@ -12,6 +12,7 @@ class Config:
     state_db: str = os.getenv("STATE_DB", "state.db")
     proxmox_api_url: str | None = os.getenv("PROXMOX_API_URL")
     proxmox_api_token: str | None = os.getenv("PROXMOX_API_TOKEN")
+    proxmox_api_verify: bool = os.getenv("PROXMOX_API_VERIFY", "true").lower() not in ("0", "false", "no")
 
 
 def load_config() -> Config:
