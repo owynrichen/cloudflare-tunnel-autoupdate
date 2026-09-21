@@ -6,6 +6,8 @@ import requests
 from requests import exceptions as req_exceptions
 
 from .config import load_config
+from .dhcp import find_ip_for
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -22,8 +24,26 @@ class ProxmoxAPI:
         if b.endswith("/api2/json"):
             b = b[: -len("/api2/json")]
         self.base = b
+        # token may be either the full header value or just the token secret.
+        # If a separate token id is present in env/config, combine them.
         self.token = token
-        self.headers = {"Authorization": f"PVEAPIToken={self.token}"}
+        try:
+            cfg = load_config()
+            tid = getattr(cfg, "proxmox_api_token_id", None)
+        except Exception:
+            tid = None
+
+        if tid and self.token:
+            header_val = f"PVEAPIToken={tid}={self.token}"
+        elif self.token and self.token.startswith("PVEAPIToken="):
+            header_val = self.token
+        elif self.token:
+            # token provided but no id: use as-is (best-effort)
+            header_val = f"PVEAPIToken={self.token}"
+        else:
+            header_val = ""
+
+        self.headers = {"Authorization": header_val} if header_val else {}
         # honor verify setting from project config if present
         try:
             cfg = load_config()
@@ -137,6 +157,12 @@ class ProxmoxAPI:
                 ip = extract_ip(data)
             except Exception:
                 ip = None
+            if ip:
+                return ip
+
+            # attempt to read vm/container config for MACs or hostname and map via DHCP
+            cfg = self.get_vm_config(node, vmid_only)
+            ip = self._ip_from_config_or_leases(cfg, vmid_only)
             return ip
 
         # no node: inspect cluster resources for vm or lxc
@@ -163,4 +189,61 @@ class ProxmoxAPI:
                     ip = None
                 if ip:
                     return ip
+                # try config-based MAC -> IP mapping
+                cfg = self.get_vm_config(node, vmid_only)
+                ip = self._ip_from_config_or_leases(cfg, vmid_only)
+                if ip:
+                    return ip
+        return None
+
+    def get_vm_config(self, node: str, vmid: str) -> Optional[dict]:
+        """Fetch VM or container config from the node and return data dict or None."""
+        # try qemu config then lxc config
+        for url in [
+            f"{self.base}/api2/json/nodes/{node}/qemu/{vmid}/config",
+            f"{self.base}/api2/json/nodes/{node}/lxc/{vmid}/config",
+        ]:
+            r = self._get(url)
+            if not r:
+                continue
+            try:
+                return r.json().get("data")
+            except ValueError:
+                continue
+        return None
+
+    def _ip_from_config_or_leases(self, cfg: Optional[dict], vmid: str) -> Optional[str]:
+        """Given a VM config dict, extract MACs and hostnames and map to IP via DHCP leases."""
+        if not cfg:
+            return None
+
+        macs = set()
+        # config may contain keys like 'net0', 'net1' with values containing MACs
+        for k, v in (cfg.items() if isinstance(cfg, dict) else []):
+            if k.startswith("net") and isinstance(v, str):
+                # search for MAC addresses in the value
+                for m in re.findall(r"[0-9a-fA-F:]{17}", v):
+                    macs.add(m.lower())
+                # lxc may include hwaddr=<mac>
+                hw = re.search(r"hwaddr=([0-9a-fA-F:]{17})", v)
+                if hw:
+                    macs.add(hw.group(1).lower())
+        # also try hostname from config
+        names = set()
+        host = cfg.get("hostname") or cfg.get("name") or cfg.get("hostname")
+        if host:
+            names.add(host)
+
+        # try DHCP lookup by MACs first
+        for m in macs:
+            ip = find_ip_for(m)
+            if ip:
+                return ip
+
+        # fallback: try by hostname/vmid
+        for n in list(names) + [vmid]:
+            ip = find_ip_for(n)
+            if ip:
+                return ip
+
         return None

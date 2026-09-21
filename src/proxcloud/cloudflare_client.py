@@ -39,6 +39,9 @@ class CloudflareClient:
     def list_tunnel_routes(self, tunnel_id: str) -> Dict[str, Any]:
         return self._get(f"/accounts/{self.account_id}/tunnels/{tunnel_id}/routes")
 
+    def list_tunnels(self) -> Dict[str, Any]:
+        return self._get(f"/accounts/{self.account_id}/tunnels")
+
     def update_tunnel_route(self, tunnel_id: str, route_id: str, destination: str) -> Dict[str, Any]:
         # destination is like "ip:1.2.3.4"
         return self._put(f"/accounts/{self.account_id}/tunnels/{tunnel_id}/routes/{route_id}", {"destination": destination})
