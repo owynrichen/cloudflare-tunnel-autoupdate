@@ -6,6 +6,7 @@ from .mapping import load_mappings
 from .proxmox_api import ProxmoxAPI
 from .state import State
 from .config import load_config
+import re
 
 
 class TunnelMapper:

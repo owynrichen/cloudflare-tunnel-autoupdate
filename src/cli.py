@@ -14,7 +14,8 @@ def main(argv=None):
     state = State(cfg.state_db)
     runner = Runner(cf, state)
     logging.getLogger().debug("Loaded config: %s", cfg)
-    if not argv:
+    # treat None as 'use sys.argv', but accept an explicit empty list as caller intent
+    if argv is None:
         argv = sys.argv[1:]
     if len(argv) < 1:
         print("Usage: cli.py <mappings.yaml>")

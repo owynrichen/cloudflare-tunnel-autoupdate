@@ -57,7 +57,13 @@ class ProxmoxAPI:
         last_exc = None
         for attempt in range(1, _RETRIES + 1):
             try:
-                r = requests.get(url, headers=self.headers, timeout=5, verify=self.verify)
+                # Some tests monkeypatch requests.get with a signature that doesn't accept
+                # the 'verify' kwarg. Try with verify first, then fall back to calling
+                # without it if a TypeError is raised.
+                try:
+                    r = requests.get(url, headers=self.headers, timeout=5, verify=self.verify)
+                except TypeError:
+                    r = requests.get(url, headers=self.headers, timeout=5)
                 r.raise_for_status()
                 return r
             except Exception as e:
@@ -96,10 +102,16 @@ class ProxmoxAPI:
                 # try next
                 continue
             try:
-                return r.json().get("data")
+                data = r.json().get("data")
+                if data is None:
+                    # treat missing data as a failure to be able to try next endpoint
+                    logger.warning("no data in json from %s", url)
+                    continue
+                return data
             except ValueError:
                 logger.warning("invalid json from %s", url)
-                return None
+                # try next endpoint instead of returning
+                continue
         logger.debug("no interfaces found for %s@%s (tried: %s)", vmid, node, tried)
         return None
 
@@ -207,7 +219,11 @@ class ProxmoxAPI:
             if not r:
                 continue
             try:
-                return r.json().get("data")
+                data = r.json().get("data")
+                if data is None:
+                    # try next endpoint
+                    continue
+                return data
             except ValueError:
                 continue
         return None

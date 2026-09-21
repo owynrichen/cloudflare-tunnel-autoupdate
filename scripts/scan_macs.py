@@ -35,7 +35,7 @@ def read_arp_table():
     return res
 
 
-def main(node: str = "pve"):
+def scan_node(node: str = "pve"):
     cfg = load_config()
     api = ProxmoxAPI(cfg.proxmox_api_url, cfg.proxmox_api_token)
 
@@ -61,13 +61,25 @@ def main(node: str = "pve"):
     ping_sweep()
     arp = read_arp_table()
 
-    # Map MACs to IPs
+    # Map MACs to IPs and return structure
     for e in out:
         e["ips"] = [arp.get(m) for m in e["macs"]]
 
+    # Also return a mac->ip map for convenience
+    mac_map = {}
+    for e in out:
+        for m, ip in zip(e["macs"], e["ips"]):
+            if ip:
+                mac_map[m] = ip
+
+    return out, mac_map
+
+
+def main_cli():
+    node = sys.argv[1] if len(sys.argv) > 1 else "pve"
+    out, mac_map = scan_node(node)
     print(json.dumps(out, indent=2))
 
 
 if __name__ == "__main__":
-    node = sys.argv[1] if len(sys.argv) > 1 else "pve"
-    main(node)
+    main_cli()
