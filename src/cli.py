@@ -27,9 +27,12 @@ def main(argv=None):
             logging.error("zone id not found for %s", m.zone)
             continue
         runner.ensure_dns(zid, m.record_id, m.name, m.type, m.vm_id, lease_paths=m.lease_paths)
-    # run tunnel mappings
-    for t in mappings.tunnels:
-        runner.ensure_tunnel_route(t.tunnel_id, t.route_id, t.vm_id, lease_paths=t.lease_paths)
+    # run tunnel mappings using TunnelMapper dry-run by default
+    from proxcloud.tunnel_mapper import TunnelMapper
+    tm = TunnelMapper(argv[0])
+    planned = tm.ensure_mappings(dry_run=True)
+    if planned:
+        logging.info("Planned tunnel updates (dry-run): %s", planned)
     return 0
 
 

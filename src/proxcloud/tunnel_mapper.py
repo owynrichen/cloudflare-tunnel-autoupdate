@@ -62,7 +62,7 @@ class TunnelMapper:
                 })
         return out
 
-    def ensure_mappings(self, dry_run: bool = True) -> List[Dict[str, Any]]:
+    def ensure_mappings(self, dry_run: bool = True, mac_ip_map: Dict[str, str] | None = None) -> List[Dict[str, Any]]:
         """Ensure tunnel routes point to current VM IPs.
 
         If dry_run is True (default) no Cloudflare or state updates are performed;
@@ -83,6 +83,25 @@ class TunnelMapper:
             current_ip = None
             if vm_id:
                 current_ip = self.api.find_vm_ip(vm_id)
+            # fallback: try mapping via VM config MACs against provided mac_ip_map
+            if not current_ip and mac_ip_map and vm_id:
+                cfg = self.api.get_vm_config(self.api.base.split('/nodes/')[0] if False else 'pve', vm_id)
+                # above is a no-op to keep signature; fetch actual cfg below
+                cfg = self.api.get_vm_config('pve', vm_id)
+                if cfg:
+                    # collect macs
+                    macs = []
+                    for k, v in cfg.items():
+                        if k.startswith("net") and isinstance(v, str):
+                            macs += re.findall(r"[0-9A-Fa-f:]{17}", v)
+                            m = re.search(r"hwaddr=([0-9A-Fa-f:]{17})", v)
+                            if m:
+                                macs.append(m.group(1))
+                    for m in macs:
+                        ip = mac_ip_map.get(m.lower())
+                        if ip:
+                            current_ip = ip
+                            break
             # record planned action if mismatch
             entry = {
                 "tunnel_id": r["tunnel_id"],
