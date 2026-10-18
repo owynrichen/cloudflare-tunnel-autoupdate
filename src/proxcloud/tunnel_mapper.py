@@ -1,5 +1,6 @@
 from typing import List, Dict, Any
 import yaml
+from urllib.parse import urlparse, urlunparse
 
 from .cloudflare_client import CloudflareClient
 from .mapping import load_mappings
@@ -107,19 +108,46 @@ class TunnelMapper:
             entry = {
                 "tunnel_id": r["tunnel_id"],
                 "route_id": route_id,
-                "expected_ip": expected_ip,
+                "expected_destination": dest,
                 "current_ip": current_ip,
+                "planned_destination": None,
                 "will_update": False,
             }
-            if current_ip and expected_ip != current_ip:
+
+            # determine new destination preserving protocol/port/path when possible
+            new_dest = None
+            if current_ip:
+                if isinstance(dest, str) and dest.startswith("ip:"):
+                    new_dest = f"ip:{current_ip}"
+                else:
+                    # try to parse as URL and replace hostname with current_ip
+                    try:
+                        parsed = urlparse(dest)
+                        if parsed.scheme in ("http", "https") and parsed.hostname:
+                            # preserve port if present
+                            netloc = current_ip
+                            if parsed.port:
+                                netloc = f"{current_ip}:{parsed.port}"
+                            new_parsed = parsed._replace(netloc=netloc)
+                            new_dest = urlunparse(new_parsed)
+                        else:
+                            # fallback to ip: style
+                            new_dest = f"ip:{current_ip}"
+                    except Exception:
+                        new_dest = f"ip:{current_ip}"
+
+            entry["planned_destination"] = new_dest
+
+            if new_dest and new_dest != dest:
                 entry["will_update"] = True
                 planned_changes.append(entry)
                 if not dry_run:
                     # apply update
                     try:
-                        self.cf.update_tunnel_route(r["tunnel_id"], route_id, f"ip:{current_ip}")
+                        self.cf.update_tunnel_route(r["tunnel_id"], route_id, new_dest)
+                        # persist new ip (store only the ip part)
                         self.state.set(f"tunnel:{r['tunnel_id']}:{route_id}", current_ip)
-                        print(f"Updated route {route_id} -> {current_ip}")
+                        print(f"Updated route {route_id} -> {new_dest}")
                     except Exception as e:
                         print(f"error updating route {route_id}: {e}")
         return planned_changes
