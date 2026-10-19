@@ -18,14 +18,14 @@ def main():
 
     tm = TunnelMapper(args.mappings)
 
-    # run mac scan to build mac->ip map
-    import subprocess, re
+    # run mac scan to build mac->ip map (call scanner programmatically)
+    from scripts.scan_macs import scan_node
 
-    # simple ping sweep/arp
-    subprocess.run(["python3", "scripts/scan_macs.py", args.node])
+    out, mac_map = scan_node(args.node)
+    print("Scan results:")
+    print(out)
 
-    # read scan output from stdout isn't trivial; instead we'll call the scanner programmatically if needed
-    planned = tm.ensure_mappings(dry_run=not args.apply)
+    planned = tm.ensure_mappings(dry_run=not args.apply, mac_ip_map=mac_map)
     print("Planned changes:")
     print(yaml.safe_dump(planned))
 
