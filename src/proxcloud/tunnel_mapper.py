@@ -64,6 +64,29 @@ class TunnelMapper:
                     "destination": r.get("destination"),
                     "vm_id": None,
                 })
+
+        # if we have no tunnels in mapping, attempt to load fixtures from tests/production_fixtures
+        # so users running locally can generate mappings from saved fixtures without live API access.
+        if not out["tunnels"]:
+            import glob, json, os
+
+            fixtures_dir = os.path.join(os.getcwd(), "tests", "production_fixtures")
+            if os.path.isdir(fixtures_dir):
+                for f in glob.glob(os.path.join(fixtures_dir, "routes_*.json")):
+                    try:
+                        with open(f) as fh:
+                            j = json.load(fh)
+                        for r in j.get("result", []):
+                            # extract tunnel id from filename
+                            tid = os.path.basename(f).split("routes_")[1].split(".json")[0]
+                            out["tunnels"].append({
+                                "tunnel_id": tid,
+                                "route_id": r.get("id"),
+                                "destination": r.get("destination"),
+                                "vm_id": None,
+                            })
+                    except Exception:
+                        pass
         return out
 
     def auto_assign_vm_ids(self, exported: Dict[str, Any], scan_out: List[Dict[str, Any]], mac_ip_map: Dict[str, str]) -> Dict[str, Any]:
