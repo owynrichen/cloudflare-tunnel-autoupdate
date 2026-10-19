@@ -64,6 +64,51 @@ class TunnelMapper:
                 })
         return out
 
+    def auto_assign_vm_ids(self, exported: Dict[str, Any], scan_out: List[Dict[str, Any]], mac_ip_map: Dict[str, str]) -> Dict[str, Any]:
+        """Try to assign vm_id for exported mappings using heuristics.
+
+        Heuristics (in order):
+        - If destination is ip:<ip> and ip matches a scanned VM IP, assign that vmid
+        - If destination hostname matches a VM name, assign that vmid
+        - If a VM's MAC-derived IP matches the route destination IP, assign that vmid
+        """
+        # build helper maps
+        ip_to_vmid = {}
+        name_to_vmid = {}
+        for e in scan_out:
+            vmid = str(e.get("vmid"))
+            name = e.get("name")
+            ips = [i for i in e.get("ips", []) if i]
+            for ip in ips:
+                ip_to_vmid[ip] = vmid
+            if name:
+                name_to_vmid[name] = vmid
+
+        for t in exported.get("tunnels", []):
+            dest = t.get("destination")
+            assigned = None
+            if isinstance(dest, str) and dest.startswith("ip:"):
+                ip = dest.split("ip:", 1)[1]
+                assigned = ip_to_vmid.get(ip)
+            if not assigned and isinstance(dest, str):
+                # try parse hostname
+                try:
+                    p = urlparse(dest)
+                    hostname = p.hostname
+                    if hostname:
+                        # direct name match
+                        assigned = name_to_vmid.get(hostname)
+                except Exception:
+                    pass
+            # last ditch: check if any scanned VM ip is same as destination host resolved from mac map
+            if not assigned and isinstance(dest, str) and dest.startswith("ip:"):
+                ip = dest.split("ip:", 1)[1]
+                assigned = ip_to_vmid.get(ip)
+
+            t["vm_id"] = assigned
+
+        return exported
+
     def ensure_mappings(self, dry_run: bool = True, mac_ip_map: Dict[str, str] | None = None) -> List[Dict[str, Any]]:
         """Ensure tunnel routes point to current VM IPs.
 
