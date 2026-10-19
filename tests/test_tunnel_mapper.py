@@ -52,5 +52,5 @@ def test_ensure_mappings_dryrun_detects_change(monkeypatch, tmp_path):
     assert isinstance(planned, list)
     # should detect one planned change because expected 10.0.0.1 vs current 10.0.0.2
     assert len(planned) == 1
-    assert planned[0]["expected_ip"] == "10.0.0.1"
+    assert planned[0]["expected_destination"].endswith("10.0.0.1")
     assert planned[0]["current_ip"] == "10.0.0.2"
