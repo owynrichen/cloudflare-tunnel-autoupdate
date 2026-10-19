@@ -1,6 +1,8 @@
 from typing import List, Dict, Any
 import yaml
 from urllib.parse import urlparse, urlunparse
+import requests
+from requests.exceptions import RequestException, SSLError, ConnectionError
 
 from .cloudflare_client import CloudflareClient
 from .mapping import load_mappings
@@ -109,7 +111,7 @@ class TunnelMapper:
 
         return exported
 
-    def ensure_mappings(self, dry_run: bool = True, mac_ip_map: Dict[str, str] | None = None) -> List[Dict[str, Any]]:
+    def ensure_mappings(self, dry_run: bool = True, mac_ip_map: Dict[str, str] | None = None, probe: bool = False, allow_insecure_tls: bool = False) -> List[Dict[str, Any]]:
         """Ensure tunnel routes point to current VM IPs.
 
         If dry_run is True (default) no Cloudflare or state updates are performed;
@@ -163,7 +165,15 @@ class TunnelMapper:
             new_dest = None
             if current_ip:
                 if isinstance(dest, str) and dest.startswith("ip:"):
-                    new_dest = f"ip:{current_ip}"
+                    # if probing is requested, try to detect http/https and prefer a URL
+                    if probe:
+                        scheme = self._probe_scheme_for_ip(current_ip, None, allow_insecure_tls)
+                        if scheme in ("http", "https"):
+                            new_dest = f"{scheme}://{current_ip}"
+                        else:
+                            new_dest = f"ip:{current_ip}"
+                    else:
+                        new_dest = f"ip:{current_ip}"
                 else:
                     # try to parse as URL and replace hostname with current_ip
                     try:
@@ -175,11 +185,32 @@ class TunnelMapper:
                                 netloc = f"{current_ip}:{parsed.port}"
                             new_parsed = parsed._replace(netloc=netloc)
                             new_dest = urlunparse(new_parsed)
+                            # if probing is enabled, verify the scheme and switch if probe shows different
+                            if probe:
+                                probed = self._probe_scheme_for_ip(current_ip, parsed.port, allow_insecure_tls)
+                                if probed and probed != parsed.scheme:
+                                    # replace scheme as well
+                                    new_parsed = new_parsed._replace(scheme=probed)
+                                    new_dest = urlunparse(new_parsed)
                         else:
                             # fallback to ip: style
-                            new_dest = f"ip:{current_ip}"
+                            if probe:
+                                scheme = self._probe_scheme_for_ip(current_ip, None, allow_insecure_tls)
+                                if scheme in ("http", "https"):
+                                    new_dest = f"{scheme}://{current_ip}"
+                                else:
+                                    new_dest = f"ip:{current_ip}"
+                            else:
+                                new_dest = f"ip:{current_ip}"
                     except Exception:
-                        new_dest = f"ip:{current_ip}"
+                        if probe:
+                            scheme = self._probe_scheme_for_ip(current_ip, None, allow_insecure_tls)
+                            if scheme in ("http", "https"):
+                                new_dest = f"{scheme}://{current_ip}"
+                            else:
+                                new_dest = f"ip:{current_ip}"
+                        else:
+                            new_dest = f"ip:{current_ip}"
 
             entry["planned_destination"] = new_dest
 
@@ -196,3 +227,45 @@ class TunnelMapper:
                     except Exception as e:
                         print(f"error updating route {route_id}: {e}")
         return planned_changes
+
+    def _probe_scheme_for_ip(self, ip: str, port: int | None = None, allow_insecure_tls: bool = False) -> str | None:
+        """Probe the given IP (and optional port) to determine if http or https responds.
+
+        Returns 'http' or 'https' or None if neither responded.
+        """
+        # try HTTP
+        try:
+            url = f"http://{ip}"
+            if port:
+                url = f"http://{ip}:{port}"
+            resp = requests.get(url, timeout=2, allow_redirects=False)
+            # any response (including 4xx) indicates HTTP is available
+            if resp.status_code >= 0:
+                return "http"
+        except (RequestException, ConnectionError):
+            pass
+
+        # try HTTPS
+        try:
+            url = f"https://{ip}"
+            if port:
+                url = f"https://{ip}:{port}"
+            resp = requests.get(url, timeout=2, verify=not allow_insecure_tls, allow_redirects=False)
+            if resp.status_code >= 0:
+                return "https"
+        except SSLError:
+            # TLS verification failed; if allow_insecure_tls is True, try again with verify=False
+            if allow_insecure_tls:
+                try:
+                    url = f"https://{ip}"
+                    if port:
+                        url = f"https://{ip}:{port}"
+                    resp = requests.get(url, timeout=2, verify=False, allow_redirects=False)
+                    if resp.status_code >= 0:
+                        return "https"
+                except RequestException:
+                    pass
+        except RequestException:
+            pass
+
+        return None
