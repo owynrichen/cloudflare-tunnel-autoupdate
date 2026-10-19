@@ -49,6 +49,19 @@ def main():
     tr.raise_for_status()
     save(os.path.join(args.output, "tunnels.json"), tr.json())
 
+    # fetch routes for each tunnel and save
+    for t in tr.json().get("result", []):
+        tid = t.get("id")
+        if not tid:
+            continue
+        rr = requests.get(f"{base}/accounts/{acct}/tunnels/{tid}/routes", headers=headers)
+        # don't fail the whole run if routes endpoint is not allowed
+        if rr.status_code == 404:
+            print(f"warning: routes not available for tunnel {tid} (403/404)")
+            continue
+        rr.raise_for_status()
+        save(os.path.join(args.output, f"routes_{tid}.json"), rr.json())
+
     print("Wrote fixtures to", args.output)
 
 
